@@ -3,16 +3,26 @@ var express = require('express');
 var router = express.Router();
 var phantom = require ('phantom');
 var fs = require('fs');
+var urlUtil = require('url');
 
 var ALLOWED_ORIGINS = ['onefootball.com'];
 
 //Routes
 router.get('/screenshot/:url', function(req, res){
+    //first get url that is passed in as param
     var url = decodeURIComponent(req.params.url);
+    //get url params - of current url
+    var url_parts = urlUtil.parse(req.url, true);
+    var query = url_parts.query;
+    var viewportWidth = parseInt(query.w) || 800;
+    var viewportHeight = parseInt(query.h) || 600;
     console.log('Requested url - ' + url);
     console.log('User agent: ' + req.headers['user-agent']);
     console.log('Referrer: ' + req.headers['referrer']);
-    if(!isValidaOrigin(url)) {
+    console.log('Viewport set width: ' + viewportWidth);
+    console.log('Viewport set width: ' + viewportHeight);
+
+    if(!isValidOrigin(url)) {
         res.status(403).send('Forbidden');
         return;
     }
@@ -20,7 +30,7 @@ router.get('/screenshot/:url', function(req, res){
     phantom.create(function (ph) {
         ph.createPage(function (page) {
             page.get('settings.userAgent', function(data) {
-                page.set('viewportSize', {width:800, height:600});
+                page.set('viewportSize', {width: viewportWidth, height: viewportHeight});
                 page.set('settings.userAgent', data + ' Photobooth (+https://github.com/Onefootball/PhotoBoothApi.git)');
                 page.open(url, function (status) {
                     console.log("opened url? ", status);
@@ -50,7 +60,7 @@ router.get('/screenshot/:url', function(req, res){
     });
 });
 
-function isValidaOrigin(url) {
+function isValidOrigin(url) {
     try{
         var urlNoProtocol = url.split('//')[1];
         var domain = urlNoProtocol.split('/')[0];

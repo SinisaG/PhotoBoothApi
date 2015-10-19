@@ -33,3 +33,5 @@ node server.js
 ```
 
 where url is a url to the page you want to render. Url has to be encoded when passed in.
+
+This endpoint additionally accepts url params, which determine the viewport size. w is param for width and h will determen height. If not passed in, default size will be 800x600.  
