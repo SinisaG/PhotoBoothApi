@@ -28,3 +28,5 @@ node_modules
 
 # Log
 photobooth.txt
+
+.idea
