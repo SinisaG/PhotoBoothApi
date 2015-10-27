@@ -1,0 +1,8 @@
+<% extend 'photobooth/cms/cms' %>
+<% if @vm.news.images.large : %>
+<img class="photobooth-news-native-logo" src="https://web-staging.onefootball.com/assets/images/photobooth/logo-grey-transparent.png"/>
+<img src="<%= @vm.news.images.large %>"
+     alt="<%= @vm.news.images.title %>"
+     title="<%= @vm.news.images.title %>"
+     width="100%"/>
+<% end %>
