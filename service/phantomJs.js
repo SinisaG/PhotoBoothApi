@@ -30,6 +30,12 @@ phantomJS.screenshot = function (req, res) {
             page.get('settings.userAgent', function (data) {
                 page.set('viewportSize', {width: viewportWidth, height: viewportHeight});
                 page.set('settings.userAgent', data + ' Photobooth (+https://github.com/Onefootball/PhotoBoothApi.git)');
+                //prevent google analytics from loading
+                page.onResourceRequested(function(requestData, request) {
+                    if ((/google-analytics\.com/gi).test(requestData['url'])){
+                        request.abort();
+                    }
+                });
                 page.open(url, function (status) {
                     console.log("opened url? ", status);
                     page.renderBase64('png', function (data) {
