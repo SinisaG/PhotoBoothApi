@@ -5,8 +5,6 @@ var router = express.Router();
 
 //Routes
 router.get('/cms/:lang/:id', function (req, res) {
-    console.log("Sharing url hit....");
-    var startTime = new Date();
     var newsLangauge = req.params.lang;
     var newId = req.params.id;
 
@@ -47,9 +45,6 @@ router.get('/cms/:lang/:id', function (req, res) {
                     //unexpected result
                     res.send(404);
             }
-            var endTime = new Date();
-            var timeSpent = (endTime - startTime) / 1000;
-            console.log("Time spent - " + timeSpent + " s");
         } else {
             res.send(404);
         }
