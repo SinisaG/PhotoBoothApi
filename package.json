@@ -18,10 +18,8 @@
   "homepage": "https://github.com/Onefootball/PhotoBoothApi#readme",
   "dependencies": {
     "body-parser": "^1.14.1",
-    "ect": "^0.5.9",
     "express": "^4.13.3",
     "phantom": "^0.8.0",
-    "request": "^2.65.0",
     "response-time": "^2.3.1"
   }
 }
