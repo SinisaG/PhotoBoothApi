@@ -1,7 +1,7 @@
 var phantom = require('phantom');
 var urlUtil = require('url');
 
-var ALLOWED_ORIGINS = ['onefootball.com'];
+var ALLOWED_ORIGINS = [];
 
 var phantomJS = {};
 
@@ -61,6 +61,9 @@ phantomJS.screenshot = function (req, res) {
 
 
 function isValidOrigin(url) {
+	if (ALLOWED_ORIGINS.length === 0) {
+		return true;
+	}
     try {
         var urlNoProtocol = url.split('//')[1];
         var domain = urlNoProtocol.split('/')[0];
