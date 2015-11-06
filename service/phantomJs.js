@@ -30,7 +30,11 @@ phantomJS.screenshot = function (req, res) {
                     }
                 });
 
-                page.open(url, function () {
+                page.open(url, function (status) {
+                    if(status !== 'success') {
+                        res.status(404).send("Could not open the page");
+                        return;
+                    }
                     function checkReadyState() {
                         setTimeout(function () {
                             page.evaluate(function () {

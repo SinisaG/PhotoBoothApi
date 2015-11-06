@@ -1,0 +1,46 @@
+<% extend 'base' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>
+        Introduction
+      </h2>
+      <p>
+          Photobooth api is a simple concept of taking screenshot of custom webite.
+          Api is build with nodejs and is using phantomjs to take a screenshot.
+      </p>
+    </div>
+    <div class="col-xs-12">
+      <h2>
+        Example
+      </h2>
+      <p>
+        Viewport for example is set on 800x600 and it will open result in new tab.
+      </p>
+      <form action="/example" method="post" target="_blank">
+        <div class="form-group">
+          <label for="url">Url to website</label>
+          <input type="text" class="form-control" id="url" name="url" placeholder="http://www.siki.si" required/>
+        </div>
+        <button type="submit" class="btn btn-default">Cheesseee!</button>
+      </form>
+    </div>
+    <div class="col-xs-12">
+      <h2>
+        Possible issues
+      </h2>
+      <p>
+          Phantom support for font loading is not great. Out of the box, for us, it worked only with svg fonts.
+          Other then that, usual css limitations apply (no flex support, etc) - what browser supports.
+      </p>
+    </div>
+    <div class="col-xs-12">
+      <h2>
+        More info
+      </h2>
+      <p>
+          This is just a demo how this funcionality can be achieved. Feel free to fork/clone the repo and try it yourself.
+      </p>
+    </div>
+  </div>
+</div>
