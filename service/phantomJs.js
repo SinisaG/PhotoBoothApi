@@ -19,7 +19,7 @@ phantomJS.screenshot = function (req, res) {
         return;
     }
     
-    phantom.create(function (ph) {
+    phantom.create('--web-security=no', function (ph) {
         ph.createPage(function (page) {
             page.get('settings.userAgent', function (data) {
                 page.set('viewportSize', {width: viewportWidth, height: viewportHeight});
